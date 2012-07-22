@@ -1,4 +1,13 @@
 class Url
+  @simplification_patterns = [
+    '(.+)/\?utm_source',
+    '(.+/product/[A-Z0-9]+)',
+    '(.+/\d+)',
+  ]
+  class << self
+    attr_reader :simplification_patterns
+  end
+
   attr_accessor :url
 
   def initialize url
@@ -6,12 +15,8 @@ class Url
   end
 
   def simplify
-    if @url.include? 'utm_source'
-      @url =~ Regexp.new('(.+)/\?utm_source')
-      return Regexp.last_match(1)
+    Url.simplification_patterns.each do |pattern|
+      return Regexp.last_match(1) if @url =~ Regexp.new(pattern)
     end
-    @url =~ Regexp.new('.+/\d+')
-    @url =~ Regexp.new('.+/product/[A-Z0-9]+') if @url.include? 'amazon'
-    $&
   end
 end
