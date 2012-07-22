@@ -7,6 +7,7 @@ class Url
 
   def simplify
     @url =~ Regexp.new('.+/\d+')
+    @url =~ Regexp.new('.+/product/[A-Z0-9]+') if @url.include? 'amazon'
     $&
   end
 end
