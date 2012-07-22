@@ -6,7 +6,7 @@ class Url
   end
 
   def simplify
-    @url =~ Regexp.new('http://lifehacker.com/\d+')
+    @url =~ Regexp.new('.+/\d+')
     $&
   end
 end
