@@ -5,7 +5,13 @@ $LOAD_PATH.unshift File.join(project_dir, 'lib')
 
 require 'url'
 
-clipboard = IO.popen('pbpaste', 'r+').read
-simplified_url = Url.new(clipboard).simplify
-p simplified_url
-IO.popen('pbcopy', 'w').print simplified_url
+def get_clipboard
+  IO.popen('pbpaste', 'r+').read
+end
+def write_to_clipboard text
+  IO.popen('pbcopy', 'w').print text
+end
+
+write_to_clipboard Url.new(get_clipboard).simplify
+
+puts get_clipboard
