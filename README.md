@@ -31,3 +31,14 @@ I use this as a script extension in [Alfred](http://www.alfredapp.com/). So my w
 * paste simple URL
 
 It is the same workflow as with [Plain Clip](http://www.bluem.net/en/mac/plain-clip/).
+
+
+Development
+===========
+
+* Install Bundler if you don't have it: `gem install bundler`
+* Install dependencies: `bundle install`
+* Run tests: `bundle exec rspec`
+* Hack away.
+
+If you want to run tests continuously, `test.all.the.time` is your friend.
