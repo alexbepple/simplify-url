@@ -15,4 +15,8 @@ describe 'Url Simplifier' do
   it 'removes crap from Amazon url' do
     Url.new('http://www.amazon.de/gp/product/B0088CG2S6/ref=s9_newr_gw_d80_g340_ir03?pf_rd_m=A3JWKAKR8XB7XF&pf_rd_s=center-2&pf_rd_r=1XKGD5MM7W03Y4WTZPDE&pf_rd_t=101&pf_rd_p=463375173&pf_rd_i=301128').simplify.should == 'http://www.amazon.de/gp/product/B0088CG2S6'
   end
+
+  it 'removes utm_source crap' do
+    Url.new('http://osxdaily.com/2012/07/18/convert-dmg-to-cdr-or-iso-with-disk-utility/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+osxdaily+%28OS+X+Daily%29').simplify.should == 'http://osxdaily.com/2012/07/18/convert-dmg-to-cdr-or-iso-with-disk-utility'
+  end
 end
