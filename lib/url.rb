@@ -4,6 +4,7 @@ class Url
     '(.+amazon.+/product/[A-Z0-9]+)',
     '(.+)/\?utm_source',
     '(.+/\d+)',
+    '(.+)'
   ]
   class << self
     attr_reader :simplification_patterns
@@ -16,10 +17,8 @@ class Url
   end
 
   def simplify
-    Url.simplification_patterns.each do |pattern|
-      match_data = @url.match Regexp.new(pattern)
-      return match_data.captures.join() if match_data
-    end
-    @url
+    suitable = Url.simplification_patterns.select { |pattern| @url =~ Regexp.new(pattern) }
+    regex = Regexp.new(suitable[0])
+    regex.match(@url).captures.join()
   end
 end
