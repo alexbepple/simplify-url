@@ -7,8 +7,8 @@ https://support.google.com/mobile/bin/answer.py?answer=138740
 https://discussions.apple.com/message/16611473#16611473 
 https://discussions.apple.com/message/16611473
 
-http://www.spiegel.de/kultur/musik/debuetalben-von-teed-lemonade-christian-loeffler-neue-techno-impulse-a-846509.html 
-http://www.spiegel.de/kultur/musik/a-846509.html
+http://www.spiegel.de/netzwelt/technologie/0,1518,370532,00.html
+    should remain unchanged
 
 
 # Gmail

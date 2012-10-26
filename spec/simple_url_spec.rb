@@ -2,11 +2,8 @@
 
 require 'url'
 
-def simplify test_data
-  Url.new(test_data[0]).simplify.should == test_data[1]
-end
-
 describe 'Url Simplifier' do
+
   describe 'removes everything after a number' do
     it 'from a LH url' do
       simplify %w{
@@ -43,4 +40,17 @@ describe 'Url Simplifier' do
     }
   end
 
+  it 'removes long title from Spiegel url' do
+    simplify %w{
+      http://www.spiegel.de/kultur/musik/debuetalben-von-teed-lemonade-christian-loeffler-neue-techno-impulse-a-846509.html
+      http://www.spiegel.de/kultur/musik/a-846509.html
+    }
+  end
+  
 end
+
+
+def simplify test_data
+  Url.new(test_data[0]).simplify.should == test_data[1]
+end
+

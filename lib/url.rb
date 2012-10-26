@@ -1,5 +1,6 @@
 class Url
   @simplification_patterns = [
+    '(.+spiegel.+/).+(a-\d+.*)',
     '(.+)/\?utm_source',
     '(.+/product/[A-Z0-9]+)',
     '(.+/\d+)',
@@ -16,7 +17,8 @@ class Url
 
   def simplify
     Url.simplification_patterns.each do |pattern|
-      return Regexp.last_match(1) if @url =~ Regexp.new(pattern)
+      match_data = @url.match Regexp.new(pattern)
+      return match_data.captures.join() if match_data
     end
     @url
   end
