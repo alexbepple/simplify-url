@@ -18,5 +18,6 @@ class Url
     Url.simplification_patterns.each do |pattern|
       return Regexp.last_match(1) if @url =~ Regexp.new(pattern)
     end
+    @url
   end
 end

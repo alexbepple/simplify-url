@@ -35,4 +35,12 @@ describe 'Url Simplifier' do
       http://osxdaily.com/2012/07/18/convert-dmg-to-cdr-or-iso-with-disk-utility
     }
   end
+
+  it "doesn't do nuthin' when nuthin' to do" do
+    simplify %w{
+      http://a.b.c
+      http://a.b.c
+    }
+  end
+
 end
