@@ -22,6 +22,7 @@ class Url
     regex = Regexp.new(suitable[0])
     url = regex.match(@url).captures.join()
 
+    url = url.sub(%r{#search/[^/]+}, '#all') if url.match(/mail.google/)
     url = url.sub(%r{#[^/]+}, '#all') if url.match(/mail.google/)
     url
   end
