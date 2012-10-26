@@ -17,6 +17,9 @@ describe 'Url Simplifier' do
         http://thechangelog.com/post/26907189672
       }
     end
+    it 'but not from Spiegel urls' do
+      leave_unchanged 'http://www.spiegel.de/netzwelt/technologie/0,1518,370532,00.html'
+    end
   end
   
   it 'removes crap from Amazon url' do
@@ -34,10 +37,7 @@ describe 'Url Simplifier' do
   end
 
   it "doesn't do nuthin' when nuthin' to do" do
-    simplify %w{
-      http://a.b.c
-      http://a.b.c
-    }
+    leave_unchanged 'http://a.b.c'
   end
 
   it 'removes long title from Spiegel url' do
@@ -54,3 +54,6 @@ def simplify test_data
   Url.new(test_data[0]).simplify.should == test_data[1]
 end
 
+def leave_unchanged url
+  simplify [url, url]
+end

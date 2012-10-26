@@ -1,6 +1,7 @@
 class Url
   @simplification_patterns = [
     '(.+spiegel.+/).+(a-\d+.*)',
+    '(.+spiegel.+/[\d,]+.html)',
     '(.+amazon.+/product/[A-Z0-9]+)',
     '(.+)/\?utm_source',
     '(.+/\d+)',
