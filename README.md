@@ -24,13 +24,9 @@ Usage
 
 The utility is destructive. If you have something on the clipboard that is not a URL, you probably will garble your clipboard. This does not bother me much right now. First, you run the utility yourself, so it's your responsibility. Second, if you are anxious about the contents of your clipboard, you probably should be using a clipboard manager anyway.
 
-I use this as a script extension in [Alfred](http://www.alfredapp.com/). So my workflow looks as follows:
+Formerly, I used this as a script extension in [Alfred](http://www.alfredapp.com/). 
 
-* copy URL
-* run script from Alfred
-* paste simple URL
-
-It is the same workflow as with [Plain Clip](http://www.bluem.net/en/mac/plain-clip/).
+I recently thought of creating an Automator service and mapping it to Cmd+Alt+C. The service merely copies text to the clipboard and then calls this script.
 
 
 Development
