@@ -20,6 +20,9 @@ describe 'Url Simplifier' do
     it 'but not from Spiegel urls' do
       leave_unchanged 'http://www.spiegel.de/netzwelt/technologie/0,1518,370532,00.html'
     end
+    it 'but not from Gmail urls' do
+      leave_unchanged 'https://mail.google.com/mail/u/0/#all/13879cf0284080c0'
+    end
   end
   
   it 'removes crap from Amazon url' do
@@ -46,7 +49,7 @@ describe 'Url Simplifier' do
       http://www.spiegel.de/kultur/musik/a-846509.html
     }
   end
-  
+
 end
 
 

@@ -3,8 +3,8 @@ class Url
     '(.+spiegel.+/).+(a-\d+.*)',
     '(.+spiegel.+/[\d,]+.html)',
     '(.+amazon.+/product/[A-Z0-9]+)',
+    '(.+(?:lifehacker|changelog).+/\d+)',
     '(.+)/\?utm_source',
-    '(.+/\d+)',
     '(.+)'
   ]
   class << self
