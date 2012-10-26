@@ -4,6 +4,12 @@ require 'url'
 
 describe 'Url Simplifier' do
 
+  it "doesn't do nuthin' when nuthin' to do" do
+    leave_unchanged 'http://a.b.c'
+    leave_unchanged 'http://www.spiegel.de/netzwelt/technologie/0,1518,370532,00.html'
+    leave_unchanged 'https://mail.google.com/mail/u/0/#all/13879cf0284080c0'
+  end
+
   describe 'removes everything after a number' do
     it 'from a LH url' do
       simplify %w{
@@ -17,21 +23,8 @@ describe 'Url Simplifier' do
         http://thechangelog.com/post/26907189672
       }
     end
-    it 'but not from Spiegel urls' do
-      leave_unchanged 'http://www.spiegel.de/netzwelt/technologie/0,1518,370532,00.html'
-    end
-    it 'but not from Gmail urls' do
-      leave_unchanged 'https://mail.google.com/mail/u/0/#all/13879cf0284080c0'
-    end
   end
   
-  it 'removes crap from Amazon url' do
-    simplify %w{
-      http://www.amazon.de/gp/product/B0088CG2S6/ref=s9_newr_gw_d80_g340_ir03?pf_rd_m=A3JWKAKR8XB7XF&pf_rd_s=center-2&pf_rd_r=1XKGD5MM7W03Y4WTZPDE&pf_rd_t=101&pf_rd_p=463375173&pf_rd_i=301128
-      http://www.amazon.de/gp/product/B0088CG2S6
-    }
-  end
-
   it 'removes utm_source crap' do
     simplify %w{
       http://osxdaily.com/2012/07/18/convert-dmg-to-cdr-or-iso-with-disk-utility/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+osxdaily+%28OS+X+Daily%29
@@ -39,14 +32,18 @@ describe 'Url Simplifier' do
     }
   end
 
-  it "doesn't do nuthin' when nuthin' to do" do
-    leave_unchanged 'http://a.b.c'
-  end
-
-  it 'removes long title from Spiegel url' do
+  it 'removes other unnecessary bits' do
+    simplify %w{
+      http://itunes.apple.com/app/calendars-google-calendar/id371434886
+      http://itunes.apple.com/app/id371434886
+    }
     simplify %w{
       http://www.spiegel.de/kultur/musik/debuetalben-von-teed-lemonade-christian-loeffler-neue-techno-impulse-a-846509.html
       http://www.spiegel.de/kultur/musik/a-846509.html
+    }
+    simplify %w{
+      http://www.amazon.de/gp/product/B0088CG2S6/ref=s9_newr_gw_d80_g340_ir03?pf_rd_m=A3JWKAKR8XB7XF&pf_rd_s=center-2&pf_rd_r=1XKGD5MM7W03Y4WTZPDE&pf_rd_t=101&pf_rd_p=463375173&pf_rd_i=301128
+      http://www.amazon.de/gp/product/B0088CG2S6
     }
   end
 

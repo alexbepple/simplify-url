@@ -1,5 +1,6 @@
 class Url
   @simplification_patterns = [
+    '(.+apple.+/app/).*(id\d+)',
     '(.+spiegel.+/).+(a-\d+.*)',
     '(.+spiegel.+/[\d,]+.html)',
     '(.+amazon.+/product/[A-Z0-9]+)',
