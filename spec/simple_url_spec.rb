@@ -50,6 +50,13 @@ describe 'Url Simplifier' do
     }
   end
 
+  it 'references Gmail messages in a stable manner' do
+    simplify %w{
+      https://mail.google.com/mail/u/0/#inbox/13879cf0284080c0 
+      https://mail.google.com/mail/u/0/#all/13879cf0284080c0
+    }
+  end
+  
 end
 
 
