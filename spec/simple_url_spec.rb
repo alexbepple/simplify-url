@@ -23,6 +23,12 @@ describe 'Url Simplifier' do
         http://thechangelog.com/post/26907189672
       }
     end
+    it 'from Gizmodo url' do
+      simplify %w{
+        http://gizmodo.com/5341915/android-hacking-for-the-masses
+        http://gizmodo.com/5341915
+      }
+    end
   end
   
   it 'removes utm_source crap' do
