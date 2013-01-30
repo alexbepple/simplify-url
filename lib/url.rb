@@ -1,10 +1,15 @@
 class Url
+
+  require 'yaml'
+  defaults = YAML.load_file('defaults.yaml')
+  remove_everything_after_id = defaults['remove everything after id'].join('|')
+
   @simplification_patterns = [
     '(.+apple.+/app/).*(id\d+)',
     '(.+spiegel.+/).+(a-\d+.*)',
     '(.+spiegel.+/[\d,]+.html)',
     '(.+amazon.+/product/[A-Z0-9]+)',
-    '(.*(?:lifehacker|changelog|gizmodo|stackoverflow|discussions.apple).+/\d+)',
+    '(.*(?:' + remove_everything_after_id + ').+/\d+)',
     '(.+)/\?utm_source',
     '(.+)'
   ]
