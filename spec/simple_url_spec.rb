@@ -17,12 +17,6 @@ describe 'Url Simplifier' do
         http://lifehacker.com/5926574
       }
     end
-    it 'for The Changelog' do
-      simplify %w{
-        http://thechangelog.com/post/26907189672/kineticjs-html5-canvas-drawing-made-easy
-        http://thechangelog.com/post/26907189672
-      }
-    end
     it 'for Gizmodo' do
       simplify %w{
         http://gizmodo.com/5341915/android-hacking-for-the-masses
@@ -91,7 +85,10 @@ end
 
 
 def simplify test_data
-  Url.new(test_data[0]).simplify.should == test_data[1]
+  defaults = {
+    'remove everything after id' => %w{lifehacker gizmodo discussions.apple}
+  }
+  UrlSimplifier.new(defaults).simplify(test_data[0]).should == test_data[1]
 end
 
 def leave_unchanged url
