@@ -24,9 +24,9 @@ class Url
   end
 
   def simplify
-    suitable = Url.simplification_patterns.select { |pattern| @url =~ Regexp.new(pattern) }
-    regex = Regexp.new(suitable[0])
-    url = regex.match(@url).captures.join()
+    suitable_patterns = Url.simplification_patterns.select { |pattern| @url =~ Regexp.new(pattern) }
+    regex_for_best_pattern = Regexp.new(suitable_patterns[0])
+    url = regex_for_best_pattern.match(@url).captures.join()
 
     url = url.sub(%r{#search/[^/]+}, '#all') if url.match(/mail.google/)
     url = url.sub(%r{#[^/]+}, '#all') if url.match(/mail.google/)
