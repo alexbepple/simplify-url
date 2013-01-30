@@ -4,7 +4,7 @@ class Url
     '(.+spiegel.+/).+(a-\d+.*)',
     '(.+spiegel.+/[\d,]+.html)',
     '(.+amazon.+/product/[A-Z0-9]+)',
-    '(.*(?:lifehacker|changelog|gizmodo|stackoverflow).+/\d+)',
+    '(.*(?:lifehacker|changelog|gizmodo|stackoverflow|discussions.apple).+/\d+)',
     '(.+)/\?utm_source',
     '(.+)'
   ]

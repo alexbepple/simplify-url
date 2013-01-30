@@ -29,6 +29,12 @@ describe 'Url Simplifier' do
         http://gizmodo.com/5341915
       }
     end
+    it 'for an Apple forum discussion' do
+      simplify %w{
+        https://discussions.apple.com/message/16611473#16611473 
+        https://discussions.apple.com/message/16611473
+      }
+    end
     it 'even if there is no protocol in the url' do
       simplify %w{
         gizmodo.com/5341915/android-hacking-for-the-masses
