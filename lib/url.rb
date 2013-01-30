@@ -7,7 +7,7 @@ class UrlSimplifier
       '(.+apple.+/app/).*(id\d+)',
       '(.+spiegel.+/).+(a-\d+.*)',
       '(.+spiegel.+/[\d,]+.html)',
-      '(.+amazon.+/product/[A-Z0-9]+)',
+      '(.+amazon.+/gp/product/[A-Z0-9]+)',
       '(.+amazon[^/]+).*(/dp/[A-Z0-9]+)',
       '(.*(?:' + remove_everything_after_id + ').+/\d+)',
       '(.+)/\?utm_source',
@@ -20,6 +20,9 @@ class UrlSimplifier
     regex_for_best_pattern = Regexp.new(suitable_patterns[0])
     url = regex_for_best_pattern.match(url).captures.join()
 
+    if url.match /amazon/
+      url.sub!(%r{gp/product}, 'dp')
+    end
     if url.match(/mail.google/) 
       [%r{#search/[^/]+}, %r{#[^/]+}].each do |unstable_reference|
         url.sub!(unstable_reference, '#all')
