@@ -62,6 +62,10 @@ describe 'Url Simplifier' do
         http://www.amazon.de/gp/product/B0088CG2S6/ref=s9_newr_gw_d80_g340_ir03?pf_rd_m=A3JWKAKR8XB7XF&pf_rd_s=center-2&pf_rd_r=1XKGD5MM7W03Y4WTZPDE&pf_rd_t=101&pf_rd_p=463375173&pf_rd_i=301128
         http://www.amazon.de/gp/product/B0088CG2S6
       }
+      simplify %w{
+        http://www.amazon.de/Philips-LED-Birne-Tropfenform-matt-19564100/dp/B0085WGRA2/ref=sr_1_5?s=lighting&ie=UTF8&qid=1354224824&sr=1-5
+        http://www.amazon.de/dp/B0085WGRA2
+      }
     end
 
   end
