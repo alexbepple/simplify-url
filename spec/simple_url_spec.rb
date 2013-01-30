@@ -4,32 +4,32 @@ require 'url'
 
 describe 'Url Simplifier' do
 
-  it "doesn't do nuthin' when nuthin' to do" do
+  it "leaves urls in peace when nuthin' to do" do
     leave_unchanged 'http://a.b.c'
     leave_unchanged 'http://www.spiegel.de/netzwelt/technologie/0,1518,370532,00.html'
     leave_unchanged 'https://mail.google.com/mail/u/0/#all/13879cf0284080c0'
   end
 
   describe 'removes everything after a number' do
-    it 'from a LH url' do
+    it 'for Lifehacker' do
       simplify %w{
         http://lifehacker.com/5926574/screenleap-for-gmail-offers-one+click-screen-sharing-from-your-inbox-or-google-contacts
         http://lifehacker.com/5926574
       }
     end
-    it 'from a The Changelog url' do
+    it 'for The Changelog' do
       simplify %w{
         http://thechangelog.com/post/26907189672/kineticjs-html5-canvas-drawing-made-easy
         http://thechangelog.com/post/26907189672
       }
     end
-    it 'from Gizmodo url' do
+    it 'for Gizmodo' do
       simplify %w{
         http://gizmodo.com/5341915/android-hacking-for-the-masses
         http://gizmodo.com/5341915
       }
     end
-    it 'for an Apple forum discussion' do
+    it 'for Apple forums' do
       simplify %w{
         https://discussions.apple.com/message/16611473#16611473 
         https://discussions.apple.com/message/16611473
@@ -50,19 +50,26 @@ describe 'Url Simplifier' do
     }
   end
 
-  it 'removes other unnecessary bits' do
-    simplify %w{
-      http://itunes.apple.com/app/calendars-google-calendar/id371434886
-      http://itunes.apple.com/app/id371434886
-    }
-    simplify %w{
-      http://www.spiegel.de/kultur/musik/debuetalben-von-teed-lemonade-christian-loeffler-neue-techno-impulse-a-846509.html
-      http://www.spiegel.de/kultur/musik/a-846509.html
-    }
-    simplify %w{
-      http://www.amazon.de/gp/product/B0088CG2S6/ref=s9_newr_gw_d80_g340_ir03?pf_rd_m=A3JWKAKR8XB7XF&pf_rd_s=center-2&pf_rd_r=1XKGD5MM7W03Y4WTZPDE&pf_rd_t=101&pf_rd_p=463375173&pf_rd_i=301128
-      http://www.amazon.de/gp/product/B0088CG2S6
-    }
+  describe 'removes unnecessary bits' do
+    it 'for App Store' do
+      simplify %w{
+        http://itunes.apple.com/app/calendars-google-calendar/id371434886
+        http://itunes.apple.com/app/id371434886
+      }
+    end
+    it 'for Spiegel Online' do
+      simplify %w{
+        http://www.spiegel.de/kultur/musik/debuetalben-von-teed-lemonade-christian-loeffler-neue-techno-impulse-a-846509.html
+        http://www.spiegel.de/kultur/musik/a-846509.html
+      }
+    end
+    it 'for Amazon' do
+      simplify %w{
+        http://www.amazon.de/gp/product/B0088CG2S6/ref=s9_newr_gw_d80_g340_ir03?pf_rd_m=A3JWKAKR8XB7XF&pf_rd_s=center-2&pf_rd_r=1XKGD5MM7W03Y4WTZPDE&pf_rd_t=101&pf_rd_p=463375173&pf_rd_i=301128
+        http://www.amazon.de/gp/product/B0088CG2S6
+      }
+    end
+
   end
 
   describe 'references Gmail messages in a stable manner' do
