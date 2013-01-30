@@ -28,8 +28,12 @@ class Url
     regex_for_best_pattern = Regexp.new(suitable_patterns[0])
     url = regex_for_best_pattern.match(@url).captures.join()
 
-    url = url.sub(%r{#search/[^/]+}, '#all') if url.match(/mail.google/)
-    url = url.sub(%r{#[^/]+}, '#all') if url.match(/mail.google/)
+    if url.match(/mail.google/) 
+      [%r{#search/[^/]+}, %r{#[^/]+}].each do |unstable_reference|
+        url.sub!(unstable_reference, '#all')
+      end
+    end
+
     url
   end
 end
