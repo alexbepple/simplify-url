@@ -24,7 +24,10 @@ class UrlSimplifier
       url.sub!(%r{gp/product}, 'dp')
     end
     if url.match(/mail.google/) 
-      [%r{#search/[^/]+}, %r{#[^/]+}].each do |unstable_reference|
+      [
+        %r{#(search|label)/[^/]+}, 
+        %r{#[^/]+}
+      ].each do |unstable_reference|
         url.sub!(unstable_reference, '#all')
       end
     end

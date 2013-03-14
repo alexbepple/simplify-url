@@ -71,16 +71,22 @@ describe 'Url Simplifier' do
   end
 
   describe 'references Gmail messages in a stable manner' do
-    it 'when url contains reference to a label' do
+    it 'from inbox' do
       simplify %w{
         https://mail.google.com/mail/u/0/#inbox/13879cf0284080c0 
         https://mail.google.com/mail/u/0/#all/13879cf0284080c0
       }
     end
-    it 'when url contains search criteria' do
+    it 'from search' do
       simplify %w{
         https://mail.google.com/mail/u/1/#search/funnel/138e2def960ca553 
         https://mail.google.com/mail/u/1/#all/138e2def960ca553
+      }
+    end
+    it 'from label' do
+      simplify %w{
+        https://mail.google.com/mail/u/0/#label/act/13d0ffede60d22d1
+        https://mail.google.com/mail/u/0/#all/13d0ffede60d22d1
       }
     end
   end
