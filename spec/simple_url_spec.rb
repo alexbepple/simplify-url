@@ -73,7 +73,12 @@ describe 'Url Simplifier' do
         http://www.huffingtonpost.ca/n_42.html
       }
     end
-
+    it 'for Google support forums' do
+      simplify %w{
+        https://support.google.com/mobile/bin/answer.py?foo&answer=42
+        https://support.google.com/mobile/bin/answer.py?answer=42
+      }
+    end
   end
 
   describe 'references Gmail messages in a stable manner' do

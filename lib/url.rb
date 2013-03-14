@@ -10,6 +10,7 @@ class UrlSimplifier
       '(.+amazon.+/gp/product/[A-Z0-9]+)',
       '(.+amazon[^/]+).*(/dp/[A-Z0-9]+)',
       '(.+huffington.+?/).*(n_\d+\.html)',
+      '(.+support.google.*/answer.py\?).*(answer=\d+)',
       '(.*(?:' + remove_everything_after_id + ').+/\d+)',
       '(.+)/\?utm_source',
       '(.+)'
