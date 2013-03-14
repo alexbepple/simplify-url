@@ -9,6 +9,7 @@ class UrlSimplifier
       '(.+spiegel.+/[\d,]+.html)',
       '(.+amazon.+/gp/product/[A-Z0-9]+)',
       '(.+amazon[^/]+).*(/dp/[A-Z0-9]+)',
+      '(.+huffington.+?/).*(n_\d+\.html)',
       '(.*(?:' + remove_everything_after_id + ').+/\d+)',
       '(.+)/\?utm_source',
       '(.+)'

@@ -67,6 +67,12 @@ describe 'Url Simplifier' do
         http://www.amazon.de/dp/B0085WGRA2
       }
     end
+    it 'for Huffington Post' do
+      simplify %w{
+        http://www.huffingtonpost.ca/2011/08/25/foo_n_42.html?foo
+        http://www.huffingtonpost.ca/n_42.html
+      }
+    end
 
   end
 
