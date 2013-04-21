@@ -7,3 +7,6 @@ group :development do
   gem 'guard-rspec'
 end
 
+group :osx do
+  gem 'rb-fsevent'
+end
