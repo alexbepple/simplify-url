@@ -1,6 +1,4 @@
-
-What is it good for?
-====================
+## What is it good for?
 
 Some URLs on the net are overly long.
 
@@ -10,15 +8,13 @@ Some URLs on the net are overly long.
 So if you do not want those monsters, e.g. as a service to the reader of your email or for your own sanity, this little tool for the Mac spares you from manually editing the URLs.
 
 
-Installation
-============
+## Installation
 
 * Clone or download.
 * Done.
 
 
-Usage
-=====
+## Usage
 
 * Running `simplify.url.rb` simplifies the URL that is on the system clipboard. That's it.
 
@@ -29,8 +25,7 @@ Formerly, I used this as a script extension in [Alfred](http://www.alfredapp.com
 I recently thought of creating an Automator service and mapping it to Cmd+Alt+C. The service merely copies text to the clipboard and then calls this script.
 
 
-Development
-===========
+## Development
 
 * Install Bundler if you don't have it: `gem install bundler`
 * Install dependencies: `bundle install`
