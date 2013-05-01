@@ -31,11 +31,12 @@ If you do not want those monsters, e.g. as a service to the reader of your email
 
 * Running `simplify.url.rb` simplifies the URL that is on the system clipboard. That's it.
 
+I run it through a simple Alfred 2 workflow:
+
+1. Hotkey ⌥⌘C passes the current OS X selection to the workflow.
+2. Bash runs `simplify.url.urb`.
+
 The utility is destructive. If you have something on the clipboard that is not a URL, you probably will garble your clipboard. This does not bother me much right now. First, you run the utility yourself, so it's your responsibility. Second, if you are anxious about the contents of your clipboard, you probably should be using a clipboard manager anyway.
-
-Formerly, I used this as a script extension in [Alfred](http://www.alfredapp.com/). 
-
-I recently thought of creating an Automator service and mapping it to Cmd+Alt+C. The service merely copies text to the clipboard and then calls this script.
 
 
 ## Development
