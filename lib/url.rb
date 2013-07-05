@@ -1,6 +1,9 @@
 class UrlSimplifier
 
   def initialize
+    @substitution_rules = [
+      SubstitutionRule.new(/mail.google/, %r{#(search|label)/[^/]+}, '#all'),
+    ]
     @substitution_patterns = [
       [/mail.google/, %r{#(search|label)/[^/]+}, '#all'],
       [/mail.google/, %r{#[^/]+},                '#all'],
