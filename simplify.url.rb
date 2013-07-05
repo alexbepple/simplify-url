@@ -11,10 +11,7 @@ def write_to_clipboard text
   IO.popen('pbcopy', 'w').print text
 end
 
-require 'yaml'
-defaults = YAML.load_file(File.join(project_dir, 'defaults.yaml'))
-
 require 'url'
-write_to_clipboard UrlSimplifier.new(defaults).simplify(get_clipboard)
+write_to_clipboard UrlSimplifier.new().simplify(get_clipboard)
 
 puts get_clipboard

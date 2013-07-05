@@ -106,10 +106,7 @@ end
 
 
 def simplify test_data
-  defaults = {
-    'remove everything after id' => %w{lifehacker gizmodo discussions.apple}
-  }
-  UrlSimplifier.new(defaults).simplify(test_data[0]).should == test_data[1]
+  UrlSimplifier.new().simplify(test_data[0]).should == test_data[1]
 end
 
 def leave_unchanged url
