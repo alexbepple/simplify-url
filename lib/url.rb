@@ -1,3 +1,5 @@
+require 'substitution_rule'
+
 class UrlSimplifier
 
   def initialize
