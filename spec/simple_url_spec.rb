@@ -89,8 +89,14 @@ describe 'Url Simplifier' do
     end
     it 'for Google Play Store' do
       simplify %w{
-        https://play.google.com/store/apps/details?id=foo.bar&feature=search_result#?t=aA0
-        https://play.google.com/store/apps/details?id=foo.bar
+        play.google.com/store/apps/details?id=foo.bar&feature=search_result#?t=aA0
+        play.google.com/store/apps/details?id=foo.bar
+      }
+    end
+    it 'for Youtube' do
+      simplify %w{
+        youtube.com/watch?v=aA0&feature=foo
+        youtube.com/watch?v=aA0
       }
     end
   end
