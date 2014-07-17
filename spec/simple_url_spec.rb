@@ -11,12 +11,6 @@ describe 'Url Simplifier' do
   end
 
   describe 'removes everything after a number' do
-    it 'for Lifehacker' do
-      simplify %w{
-        http://lifehacker.com/42/foo
-        http://lifehacker.com/42
-      }
-    end
     it 'for Gizmodo' do
       simplify %w{
         http://gizmodo.com/42/foo
@@ -45,6 +39,20 @@ describe 'Url Simplifier' do
   end
 
   describe 'removes unnecessary bits' do
+    describe 'for Lifehacker URLs' do
+      it 'in slash style' do
+        simplify %w{
+          http://lifehacker.com/42/foo
+          http://lifehacker.com/42
+        }
+      end
+      it 'in hyphen style' do
+        simplify %w{
+          lifehacker.com/foo-42
+          lifehacker.com/42
+        }
+      end
+    end
     it 'for App Store' do
       simplify %w{
         http://itunes.apple.com/app/foo/id42

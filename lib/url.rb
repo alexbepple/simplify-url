@@ -10,6 +10,7 @@ class UrlSimplifier
       ]
     @simplification_patterns = [
       '(.+apple.+/app/).*(id\d+)',
+      '(.*lifehacker.+/)[^\d]*(\d+)',
       '(.+spiegel.+/).+(a-\d+.*)',
       '(.+spiegel.+/[\d,]+.html)',
       '(.+amazon.+/gp/product/[A-Z0-9]+)',
