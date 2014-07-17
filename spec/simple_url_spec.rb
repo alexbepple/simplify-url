@@ -87,6 +87,12 @@ describe 'Url Simplifier' do
         https://support.google.com/mobile/bin/answer.py?answer=42
       }
     end
+    it 'for Google Play Store' do
+      simplify %w{
+        https://play.google.com/store/apps/details?id=foo.bar&feature=search_result#?t=aA0
+        https://play.google.com/store/apps/details?id=foo.bar
+      }
+    end
   end
 
   describe 'references Gmail messages in a stable manner' do
