@@ -9,6 +9,7 @@ class UrlSimplifier
       [/amazon/, %r{gp/product}, 'dp']
       ]
     @simplification_patterns = [
+      '(.*chrome.google.com/webstore/detail/).*/([a-z]+)',
       '(.*youtube.*/watch\?v=.*)&',
       '(.*play.google.com/store/apps/details\?id=.*)&',
       '(.+apple.+/app/).*(id\d+)',

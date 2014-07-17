@@ -93,6 +93,13 @@ describe 'Url Simplifier' do
         play.google.com/store/apps/details?id=foo.bar
       }
     end
+    it 'for Google Chrome extensions' do
+      simplify %w{
+        chrome.google.com/webstore/detail/some-name/idinsmallletters?hl=en
+        chrome.google.com/webstore/detail/idinsmallletters
+      }
+      leave_unchanged 'chrome.google.com/webstore/detail/idinsmallletters'
+    end
     it 'for Youtube' do
       simplify %w{
         youtube.com/watch?v=aA0&feature=foo
