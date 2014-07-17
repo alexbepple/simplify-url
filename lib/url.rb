@@ -3,14 +3,11 @@ require 'substitution_rule'
 class UrlSimplifier
 
   def initialize
-    @substitution_rules = [
-      SubstitutionRule.new(/mail.google/, %r{#(search|label)/[^/]+}, '#all'),
-    ]
-    @substitution_patterns = [
+    @substitution_rules = SubstitutionRule.create [
       [/mail.google/, %r{#(search|label)/[^/]+}, '#all'],
       [/mail.google/, %r{#[^/]+},                '#all'],
-      [/amazon/, %r{gp/product}, 'dp'],
-    ]
+      [/amazon/, %r{gp/product}, 'dp']
+      ]
     @simplification_patterns = [
       '(.+apple.+/app/).*(id\d+)',
       '(.+spiegel.+/).+(a-\d+.*)',
@@ -26,8 +23,7 @@ class UrlSimplifier
   end
 
   def simplify url
-    suitable_substitution_patterns = @substitution_patterns.select { |p| url=~Regexp.new(p[0])}
-    suitable_substitution_patterns.each { |p| url = url.sub(p[1], p[2])}
+    @substitution_rules.each { |rule| url = rule.apply(url) }
 
     if url.match(/mail.google/) 
       return url

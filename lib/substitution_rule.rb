@@ -10,5 +10,9 @@ class SubstitutionRule
     return input.sub(@to_replace, @replace_with)
   end
 
+  def self.create rules
+    rules.map { |rule| SubstitutionRule.new rule[0], rule[1], rule[2] }
+  end
+
 end
 
