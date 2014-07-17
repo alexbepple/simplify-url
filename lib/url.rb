@@ -4,8 +4,8 @@ class UrlSimplifier
 
   def initialize
     @substitution_rules = SubstitutionRule.create [
-      [/mail.google/, %r{#(search|label)/[^/]+}, '#all'],
-      [/mail.google/, %r{#[^/]+},                '#all'],
+      [/mail.google/, %r{#(advanced-search|search|label)/[^/]+}, '#all'],
+      [/mail.google/,                                %r{#[^/]+}, '#all'],
       [/amazon/, %r{gp/product}, 'dp']
       ]
     @simplification_patterns = [

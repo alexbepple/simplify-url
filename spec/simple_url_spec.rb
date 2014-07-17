@@ -90,14 +90,20 @@ describe 'Url Simplifier' do
     end
     it 'from search' do
       simplify %w{
-        https://mail.google.com/mail/u/1/#search/foo/42f
-        https://mail.google.com/mail/u/1/#all/42f
+        https://mail.google.com/mail/u/1/#search/foo/42
+        https://mail.google.com/mail/u/1/#all/42
+      }
+    end
+    it 'from advanced search' do
+      simplify %w{
+        https://mail.google.com/mail/u/1/#advanced-search/foo=bar&bar=foo/42
+        https://mail.google.com/mail/u/1/#all/42
       }
     end
     it 'from label' do
       simplify %w{
-        https://mail.google.com/mail/u/0/#label/foo/42f
-        https://mail.google.com/mail/u/0/#all/42f
+        https://mail.google.com/mail/u/0/#label/foo/42
+        https://mail.google.com/mail/u/0/#all/42
       }
     end
   end
