@@ -31,11 +31,19 @@ describe 'Url Simplifier' do
     end
   end
   
-  it 'removes utm_source crap' do
-    simplify %w{
-      http://osxdaily.com/2012/07/18/foo/?utm_source=foo
-      http://osxdaily.com/2012/07/18/foo
-    }
+  describe 'removes utm_ crap:' do
+    it 'utm_source' do
+      simplify %w{
+        http://osxdaily.com/2012/07/18/foo/?utm_source=foo
+        http://osxdaily.com/2012/07/18/foo/
+      }
+    end
+    it 'utm_campaign' do
+      simplify %w{
+        abc.de/foo?utm_campaign=foo
+        abc.de/foo
+      }
+    end
   end
 
   describe 'removes unnecessary bits' do

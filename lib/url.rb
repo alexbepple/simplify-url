@@ -20,7 +20,7 @@ class UrlSimplifier
       '(.+amazon[^/]+).*(/dp/[A-Z0-9]+)',
       '(.+huffington.+?/).*(n_\d+\.html)',
       '(.+support.google.*/answer.py\?).*(answer=\d+)',
-      '(.+)/\?utm_source',
+      '(.+)\?utm_',
       '(.+/\d+)',
       '(.+)'
     ]

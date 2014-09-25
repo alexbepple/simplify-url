@@ -2,3 +2,4 @@
 /bundler_stubs
 /vendor/ruby
 /tmp
+vendor/bundle
