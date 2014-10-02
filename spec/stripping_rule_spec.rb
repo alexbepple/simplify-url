@@ -1,7 +1,7 @@
 
 require 'stripping_rule'
 
-describe 'StrippingRule' do
+describe 'Stripping rule' do
   context '' do
     rule = StrippingRule.new(/foo/)
     it 'is applicable when pattern matches' do
@@ -9,6 +9,9 @@ describe 'StrippingRule' do
     end
     it 'and only then' do
       rule.applies_to?('bar').should be_false
+    end
+    it 'returns original input when not applicable' do
+      rule.apply('bar').should == 'bar'
     end
   end
 

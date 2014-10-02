@@ -5,8 +5,12 @@ class SubstitutionRule
     @replace_with = replace_with
   end
 
+  def applies_to? input
+    input.match(@criterion)
+  end
+
   def apply(input)
-    return input unless input.match(@criterion)
+    return input unless applies_to? input
     return input.sub(@to_replace, @replace_with)
   end
 

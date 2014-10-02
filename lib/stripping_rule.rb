@@ -9,6 +9,7 @@ class StrippingRule
   end
 
   def apply input
+    return input unless applies_to? input
     @regex.match(input).captures.join()
   end
 
