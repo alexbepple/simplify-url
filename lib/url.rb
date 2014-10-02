@@ -1,4 +1,5 @@
 require 'substitution_rule'
+require 'stripping_rule'
 
 class UrlSimplifier
 
@@ -8,7 +9,7 @@ class UrlSimplifier
       [/mail.google/,                                %r{#[^/]+}, '#all'],
       [/amazon/, %r{gp/product}, 'dp']
       ]
-    @simplification_patterns = %w{
+    @stripping_rules = StrippingRule.create %w{
       (.*chrome.google.com/webstore/detail/).*/([a-z]+)
       (.*youtube.*/watch\?v=.*)&
       (.*play.google.com/store/apps/details\?id=.*)&
@@ -33,12 +34,9 @@ class UrlSimplifier
       return url
     end
 
-    suitable_patterns = @simplification_patterns.select { |pattern| url =~ Regexp.new(pattern) }
-    
-    regex_for_best_pattern = Regexp.new(suitable_patterns[0])
-    url = regex_for_best_pattern.match(url).captures.join()
-
-    url
+    applicable_rules = @stripping_rules.select { |rule| rule.applies_to? url }
+    best_rule = applicable_rules[0]
+    best_rule.apply url
   end
 
 end
