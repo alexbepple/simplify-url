@@ -9,9 +9,7 @@ class RuleSequence
   end
 
   def apply input
-    result = input
-    @rules.each { |rule| result = rule.apply(result) }
-    result
+    @rules.inject(input) { |result, rule| rule.apply(result) }
   end
 end
 
