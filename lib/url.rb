@@ -33,8 +33,7 @@ class UrlSimplifier
 
   def simplify url
     all_rules = [@gmail_rulez, @amazon_rulez] + @stripping_rules
-    applicable_rules = all_rules.select { |rule| rule.applies_to? url }
-    best_rule = applicable_rules[0]
+    best_rule = all_rules.find { |rule| rule.applies_to? url }
     best_rule.apply url
   end
 
