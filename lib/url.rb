@@ -5,17 +5,17 @@ require 'rule_sequence'
 class UrlSimplifier
 
   def initialize
-    @gmail_rulez = RuleSequence.new SubstitutionRule.create [
+    @gmail_rulez = RuleSequence.new SubstitutionRules.create [
       [/mail.google/, %r{#(advanced-search|search|label)/[^/]+}, '#all'],
       [/mail.google/,                                %r{#[^/]+}, '#all'],
       ]
     @amazon_rulez = RuleSequence.new [
       SubstitutionRule.new(/amazon/, %r{gp/product}, 'dp'),
-    ] + StrippingRule.create(%w{
+    ] + StrippingRules.create(%w{
       (.+amazon.+/gp/product/[A-Z0-9]+)
       (.+amazon[^/]+).*(/dp/[A-Z0-9]+)
     })
-    @stripping_rules = StrippingRule.create %w{
+    @stripping_rules = StrippingRules.create %w{
       (.*chrome.google.com/webstore/detail/).*/([a-z]+)
       (.*youtube.*/watch\?v=.*)&
       (.*play.google.com/store/apps/details\?id=.*)&

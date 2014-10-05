@@ -12,9 +12,10 @@ class StrippingRule
     return input unless applies_to? input
     @regex.match(input).captures.join()
   end
+end
 
+class StrippingRules
   def self.create patterns
     patterns.map { |pattern| StrippingRule.new pattern }
   end
 end
-

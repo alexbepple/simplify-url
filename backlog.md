@@ -1,6 +1,4 @@
 
-for mass factory methods : Rule → Rules
-
 stub rules
 
 Can I do better than this?
