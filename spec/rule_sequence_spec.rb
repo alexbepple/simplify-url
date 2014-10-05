@@ -3,29 +3,23 @@ require 'rule_sequence'
 
 describe 'Rule sequence' do
   it 'is applicable if the first rule applies' do
-    RuleSequence.new([
-      ApplicableRule.new      
-    ]).applies_to?('foo').should be_true
+    applicable_rule = stub('applicable rule')
+    applicable_rule.stub(:applies_to?).and_return(true)
+    RuleSequence.new([applicable_rule]).applies_to?('foo').should be_true
   end
   it 'is not applicable if no rules apply' do
     RuleSequence.new([]).applies_to?('foo').should be_false
   end
   it 'applies by consecutively applying all rules' do
     RuleSequence.new([
-      FixedValuesRule.new('foo', 'bar'),
-      FixedValuesRule.new('bar', 'baz')
+      fixed_values_rule('foo', 'bar'),
+      fixed_values_rule('bar', 'baz')
     ]).apply('foo').should == 'baz'
   end
 end
 
-class ApplicableRule
-  def applies_to? (input) true end
-end
-class FixedValuesRule
-  def initialize fixed_input, fixed_output
-    @fixed_input = fixed_input
-    @fixed_output = fixed_output
-  end
-  def applies_to? (input) input == fixed_input end
-  def apply (input) @fixed_output end
+def fixed_values_rule from, to
+  rule = stub("fixed-values rule '#{from}'→'#{to}'")
+  rule.should_receive(:apply).with(from).and_return(to)
+  rule
 end
