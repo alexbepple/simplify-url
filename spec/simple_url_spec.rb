@@ -127,6 +127,12 @@ describe 'Url Simplifier' do
           trello.com/b/idFrom0aA
         }
       end
+      it 'cards' do
+        simplify %w{
+          https://trello.com/c/idFrom0aA/some-description
+          https://trello.com/c/idFrom0aA
+        }
+      end
     end
   end
 

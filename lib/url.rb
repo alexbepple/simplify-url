@@ -24,8 +24,7 @@ class UrlSimplifier
       (.+spiegel.+/).+(a-\d+.*)
       (.+spiegel.+/[\d,]+.html)
 
-      (.*trello.*/b/.+?)/.*
-
+      (.*trello.*/[bc]/.+?)/.*
       (.*youtube.*/watch\?v=.*)&
       (.+apple.+/app/).*(id\d+)
       (.*lifehacker.+/)[^\d]*(\d+)
