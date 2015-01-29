@@ -120,6 +120,14 @@ describe 'Url Simplifier' do
         youtube.com/watch?v=aA0
       }
     end
+    describe 'for Trello' do
+      it 'boards' do
+        simplify %w{
+          trello.com/b/idFrom0aA/some-description
+          trello.com/b/idFrom0aA
+        }
+      end
+    end
   end
 
   describe 'references Gmail messages in a stable manner' do

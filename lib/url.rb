@@ -19,10 +19,12 @@ class UrlSimplifier
       (.*chrome.google.com/webstore/detail/).*/([a-z]+)
       (.*play.google.com/store/apps/details\?id=.*)&
       (.+support.google.*/answer.py\?).*(answer=\d+)
-      (.*google.*/search\?q=[^&]+).*
+      (.*google.*/search\?q=.+?)&.*
 
       (.+spiegel.+/).+(a-\d+.*)
       (.+spiegel.+/[\d,]+.html)
+
+      (.*trello.*/b/.+?)/.*
 
       (.*youtube.*/watch\?v=.*)&
       (.+apple.+/app/).*(id\d+)
