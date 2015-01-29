@@ -108,6 +108,12 @@ describe 'Url Simplifier' do
       }
       leave_unchanged 'chrome.google.com/webstore/detail/idinsmallletters'
     end
+    it 'for Google searches' do
+      simplify %w{
+        google.de/search?q=foo&qscrl=1#q=foo
+        google.de/search?q=foo
+      }
+    end
     it 'for Youtube' do
       simplify %w{
         youtube.com/watch?v=aA0&feature=foo

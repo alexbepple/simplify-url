@@ -17,14 +17,17 @@ class UrlSimplifier
     })
     @stripping_rules = StrippingRules.create %w{
       (.*chrome.google.com/webstore/detail/).*/([a-z]+)
-      (.*youtube.*/watch\?v=.*)&
       (.*play.google.com/store/apps/details\?id=.*)&
-      (.+apple.+/app/).*(id\d+)
-      (.*lifehacker.+/)[^\d]*(\d+)
+      (.+support.google.*/answer.py\?).*(answer=\d+)
+      (.*google.*/search\?q=[^&]+).*
+
       (.+spiegel.+/).+(a-\d+.*)
       (.+spiegel.+/[\d,]+.html)
+
+      (.*youtube.*/watch\?v=.*)&
+      (.+apple.+/app/).*(id\d+)
+      (.*lifehacker.+/)[^\d]*(\d+)
       (.+huffington.+?/).*(n_\d+\.html)
-      (.+support.google.*/answer.py\?).*(answer=\d+)
       (.+)\?utm_
       (.+/\d+)
     }
