@@ -18,25 +18,25 @@ to
 
 shall we?
 
-If you do not want those monsters, e.g. as a service to the reader of your email or for your own sanity, this little tool for the Mac spares you from manually editing the URLs.
+If you do not want those monsters, e.g. as a service to the reader of your email or for your own sanity, this little tool spares you from manually editing the URLs.
 
 
 ## Installation
 
-* Clone or download.
-* Done.
+Clone or download.
+
+Personally I use [peru](https://github.com/buildinspace/peru) for repos from others, so that I can update them easily at once.
 
 
 ## Usage
 
-* Running `simplify.url.rb` simplifies the URL that is on the system clipboard. That's it.
+`simplify.url.rb` simplifies the URL that you pass to it as the first parameter and prints the simplified URL to stdout.
 
-I run it through a simple Alfred 2 workflow:
+I use invoke the script on a Mac through a simple Alfred 2 workflow:
 
 1. Hotkey ⌥⌘C passes the current OS X selection to the workflow.
-2. Bash runs `simplify.url.urb`.
-
-The utility is destructive. If you have something on the clipboard that is not a URL, you probably will garble your clipboard. This does not bother me much right now. First, you run the utility yourself, so it's your responsibility. Second, if you are anxious about the contents of your clipboard, you probably should be using a clipboard manager anyway.
+2. Zsh runs `simplify.url.rb`.
+3. Alfred puts the output of the script back on the clipboard.
 
 
 ## Development
@@ -46,4 +46,4 @@ The utility is destructive. If you have something on the clipboard that is not a
 * Run tests: `bundle exec rspec`
 * Hack away.
 
-If you want to run tests continuously, `test.all.the.time` is your friend.
+If you want to run tests continuously, `make tdd` is your friend.
