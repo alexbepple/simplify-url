@@ -3,7 +3,7 @@
   "version": "0.1",
   "permissions": ["activeTab", "clipboardWrite"],
   "background": {
-    "page": "background.html",
+    "scripts": ["background.js"],
     "persistent": false
   },
   "browser_action": {
