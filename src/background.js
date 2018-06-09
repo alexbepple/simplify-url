@@ -9,7 +9,12 @@ document.addEventListener("copy", function(e) {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    textToPutOnClipboard = cleanUrl(tabs[0].url);
+    const tab = tabs[0];
+    const cleanedUrl = cleanUrl(tab.url);
+
+    chrome.tabs.update(tab.id, { url: cleanedUrl });
+
+    textToPutOnClipboard = cleanedUrl;
     document.execCommand("copy");
   });
 });
