@@ -14,11 +14,17 @@ describe("URL cleaner", () => {
         is("https://www.amazon.de/dp/after-dp")
       );
     });
-    it("drops another segment before 'dp'", () => {
+    it("drop another segment before 'dp'", () => {
       // I know no example with multiple prefix segments
       assertThat(
-        cleanUrl("amazon.de/foo/dp/after-dp"),
-        is("amazon.de/dp/after-dp")
+        cleanUrl("http://amazon.de/foo/dp/after-dp"),
+        is("http://amazon.de/dp/after-dp")
+      );
+    });
+    it("drop query string", () => {
+      assertThat(
+        cleanUrl("http://amazon.de/dp/after-dp?foo=bar"),
+        is("http://amazon.de/dp/after-dp")
       );
     });
   });
