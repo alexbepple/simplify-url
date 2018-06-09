@@ -1,3 +1,5 @@
+import cleanUrl from "./clean-url.js";
+
 var textToPutOnClipboard;
 
 document.addEventListener("copy", function(e) {
@@ -7,7 +9,7 @@ document.addEventListener("copy", function(e) {
 
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    textToPutOnClipboard = tabs[0].url;
+    textToPutOnClipboard = cleanUrl(tabs[0].url);
     document.execCommand("copy");
   });
 });
