@@ -1,5 +1,7 @@
+import * as r from "ramda";
+
 export default x => {
-  const url = new URL(x);
+  const url = new URL(r.identity(x));
   if (url.hostname.indexOf("amazon") > -1) {
     const pathSegments = url.pathname.split("/");
 
