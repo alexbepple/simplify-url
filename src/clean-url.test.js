@@ -6,6 +6,14 @@ describe('URL cleaner', () => {
     const urlThatsAlreadyClean = 'http://alex.bepple.de'
     assertThat(cleanUrl(urlThatsAlreadyClean), is(urlThatsAlreadyClean))
   })
+  describe('removes common tracking search params', () => {
+    it('removes trk_ search params', () => {
+      assertThat(
+        cleanUrl('http://host.tld/?utm_foo=bar'),
+        is('http://host.tld/')
+      )
+    })
+  })
   describe('Amazon', () => {
     it("use only the URL segment after 'dp'", () => {
       // I know no example with multiple suffix segments

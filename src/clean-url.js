@@ -21,5 +21,11 @@ export default (dirtyUrlString) => {
     url.search = ''
     return url.toString()
   }
+
+  if (!r.isEmpty(url.search)) {
+    url.search = ''
+    return url.toString()
+  }
+
   return dirtyUrlString
 }
