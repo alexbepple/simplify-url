@@ -1,0 +1,2 @@
+test: yarn test --watch
+build: ./node_modules/.bin/chokidar 'src/**/*.js' -c 'yarn build' --initial
