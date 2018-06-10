@@ -1,20 +1,19 @@
-import cleanUrl from './clean-url.js'
+/* global document, chrome */
 
-var textToPutOnClipboard
+import cleanUrl from './clean-url'
 
-document.addEventListener('copy', function(e) {
+let textToPutOnClipboard
+
+document.addEventListener('copy', (e) => {
   e.clipboardData.setData('text/plain', textToPutOnClipboard)
   e.preventDefault()
 })
 
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-    const tab = tabs[0]
-    const cleanedUrl = cleanUrl(tab.url)
+chrome.browserAction.onClicked.addListener((tab) => {
+  const cleanedUrl = cleanUrl(tab.url)
 
-    chrome.tabs.update(tab.id, { url: cleanedUrl })
+  chrome.tabs.update(tab.id, { url: cleanedUrl })
 
-    textToPutOnClipboard = cleanedUrl
-    document.execCommand('copy')
-  })
+  textToPutOnClipboard = cleanedUrl
+  document.execCommand('copy')
 })

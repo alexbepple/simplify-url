@@ -1,7 +1,6 @@
 import { assertThat, is } from 'hamjest'
-import cleanUrl from './clean-url'
 import * as r from 'ramda'
-import { isToday } from 'date-fns'
+import cleanUrl from './clean-url'
 
 const assertClean = r.useWith(assertThat, [cleanUrl, is])
 const assertUnchanged = r.converge(assertClean, [r.identity, r.identity])
