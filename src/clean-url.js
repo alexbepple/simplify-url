@@ -19,7 +19,7 @@ const cleanQueryString = r.pipe(
   qs.parse,
   r.pick(['q']),
   qs.stringify,
-  r.replace('%20', '+')
+  r.replace(/%20/g, '+')
 )
 
 export default (dirtyUrlString) => {

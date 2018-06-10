@@ -23,8 +23,8 @@ describe('URL cleaner', () => {
   describe('Google', () => {
     it('keeps search query', () => {
       assertThat(
-        cleanUrl('http://google.tld/search?q=search+query'),
-        'http://google.tld/search?q=search+query'
+        cleanUrl('http://google.tld/search?q=foo+bar+baz'),
+        'http://google.tld/search?q=foo+bar+baz'
       )
     })
   })
