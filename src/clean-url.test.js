@@ -9,8 +9,22 @@ describe('URL cleaner', () => {
   describe('removes common tracking search params', () => {
     it('removes trk_ search params', () => {
       assertThat(
+        cleanUrl('http://host.tld/?trk_foo=bar'),
+        is('http://host.tld/')
+      )
+    })
+    it('removes utm_ search params', () => {
+      assertThat(
         cleanUrl('http://host.tld/?utm_foo=bar'),
         is('http://host.tld/')
+      )
+    })
+  })
+  describe('Google', () => {
+    it('keeps search query', () => {
+      assertThat(
+        cleanUrl('http://google.tld/search?q=search+query'),
+        'http://google.tld/search?q=search+query'
       )
     })
   })

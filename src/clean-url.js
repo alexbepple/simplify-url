@@ -1,4 +1,5 @@
 import * as r from 'ramda'
+import * as qs from 'query-string'
 
 const toPathComponents = r.split('/')
 const toPathname = r.pipe(
@@ -14,6 +15,13 @@ const cleanAmazonPathname = r.pipe(
   toPathname
 )
 
+const cleanQueryString = r.pipe(
+  qs.parse,
+  r.pick(['q']),
+  qs.stringify,
+  r.replace('%20', '+')
+)
+
 export default (dirtyUrlString) => {
   const url = new URL(dirtyUrlString)
   if (url.hostname.indexOf('amazon') > -1) {
@@ -23,7 +31,7 @@ export default (dirtyUrlString) => {
   }
 
   if (!r.isEmpty(url.search)) {
-    url.search = ''
+    url.search = cleanQueryString(url.search)
     return url.toString()
   }
 

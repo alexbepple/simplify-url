@@ -1,4 +1,5 @@
 import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 
 export default {
   input: 'src/background.js',
@@ -6,5 +7,5 @@ export default {
     format: 'es',
     file: 'dist/background.js'
   },
-  plugins: [resolve()]
+  plugins: [resolve(), commonjs()]
 }
