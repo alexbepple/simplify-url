@@ -1,5 +1,4 @@
 /node_modules/
-/.reify-cache/
 yarn-error.log
 
 /dist/background.js
