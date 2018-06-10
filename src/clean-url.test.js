@@ -1,53 +1,44 @@
 import { assertThat, is } from 'hamjest'
 import cleanUrl from './clean-url'
+import * as r from 'ramda'
+import { isToday } from 'date-fns'
+
+const assertClean = r.useWith(assertThat, [cleanUrl, is])
+const assertUnchanged = r.converge(assertClean, [r.identity, r.identity])
 
 describe('URL cleaner', () => {
-  it('leaves URL in peace when there is nothing to clean up', () => {
-    const urlThatsAlreadyClean = 'http://alex.bepple.de'
-    assertThat(cleanUrl(urlThatsAlreadyClean), is(urlThatsAlreadyClean))
-  })
+  it('leaves URL in peace when there is nothing to clean up', () =>
+    assertUnchanged('http://alex.bepple.de'))
+
   describe('removes common tracking search params', () => {
-    it('removes trk_ search params', () => {
-      assertThat(
-        cleanUrl('http://host.tld/?trk_foo=bar'),
-        is('http://host.tld/')
-      )
-    })
-    it('removes utm_ search params', () => {
-      assertThat(
-        cleanUrl('http://host.tld/?utm_foo=bar'),
-        is('http://host.tld/')
-      )
-    })
+    it('removes trk_ search params', () =>
+      assertClean('http://host.tld/?trk_foo=bar', 'http://host.tld/'))
+    it('removes utm_ search params', () =>
+      assertClean('http://host.tld/?utm_foo=bar', 'http://host.tld/'))
   })
+
   describe('Google', () => {
-    it('keeps search query', () => {
-      assertThat(
-        cleanUrl('http://google.tld/search?q=foo+bar+baz'),
-        'http://google.tld/search?q=foo+bar+baz'
-      )
-    })
+    it('keeps search query', () =>
+      assertUnchanged('http://google.tld/search?q=foo+bar+baz'))
   })
+
   describe('Amazon', () => {
-    it("use only the URL segment after 'dp'", () => {
+    it("use only the URL segment after 'dp'", () =>
       // I know no example with multiple suffix segments
-      assertThat(
-        cleanUrl('https://www.amazon.de/dp/after-dp/foo'),
-        is('https://www.amazon.de/dp/after-dp')
-      )
-    })
-    it("drop another segment before 'dp'", () => {
+      assertClean(
+        'https://www.amazon.de/dp/after-dp/foo',
+        'https://www.amazon.de/dp/after-dp'
+      ))
+    it("drop another segment before 'dp'", () =>
       // I know no example with multiple prefix segments
-      assertThat(
-        cleanUrl('http://amazon.de/foo/dp/after-dp'),
-        is('http://amazon.de/dp/after-dp')
-      )
-    })
-    it('drop query string', () => {
-      assertThat(
-        cleanUrl('http://amazon.de/dp/after-dp?foo=bar'),
-        is('http://amazon.de/dp/after-dp')
-      )
-    })
+      assertClean(
+        'http://amazon.de/foo/dp/after-dp',
+        'http://amazon.de/dp/after-dp'
+      ))
+    it('drop query string', () =>
+      assertClean(
+        'http://amazon.de/dp/after-dp?foo=bar',
+        'http://amazon.de/dp/after-dp'
+      ))
   })
 })
