@@ -39,5 +39,10 @@ describe('URL cleaner', () => {
         'http://amazon.de/dp/after-dp?foo=bar',
         'http://amazon.de/dp/after-dp'
       ))
+    it('replaces old gp url with newer dp url', () =>
+      assertClean(
+        'https://www.amazon.de/gp/product/asin',
+        'https://www.amazon.de/dp/asin'
+      ))
   })
 })

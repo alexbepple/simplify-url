@@ -9,6 +9,7 @@ const toPathname = r.pipe(
 
 const dropEverythingBeforeDp = r.dropWhile(r.complement(r.equals('dp')))
 const cleanAmazonPathname = r.pipe(
+  r.replace('gp/product', 'dp'),
   toPathComponents,
   dropEverythingBeforeDp,
   r.take(2),
