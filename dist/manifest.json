@@ -1,0 +1,19 @@
+{
+  "name": "Simplify URL",
+  "version": "0.1",
+  "permissions": ["activeTab", "clipboardWrite"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_title": "Simplify URL and copy it to clipboard",
+    "default_icon": {
+      "48": "48px-Edit-clear.svg.png"
+    }
+  },
+  "icons": {
+    "48": "48px-Edit-clear.svg.png"
+  },
+  "manifest_version": 2
+}

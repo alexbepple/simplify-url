@@ -1,0 +1,2 @@
+test: yarn test --watch
+build: npx chokidar 'src/**/*.js' -i 'src/**/*.test.js' -c 'yarn build' --initial
