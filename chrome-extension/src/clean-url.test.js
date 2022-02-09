@@ -45,4 +45,13 @@ describe('URL cleaner', () => {
         'https://www.amazon.de/dp/asin'
       ))
   })
+
+  describe('Gmail', () => {
+    it('replaces search string', () => {
+      assertClean(
+        'https://mail.google.com/mail/u/0/#search/search+query/FMxyz',
+        'https://mail.google.com/mail/u/0/#all/FMxyz'
+      )
+    })
+  })
 })

@@ -31,6 +31,11 @@ export default (dirtyUrlString) => {
     return url.toString()
   }
 
+  if (url.hostname.indexOf('mail.google.com') > -1) {
+    url.hash = r.replace('#search/search+query', '#all')(url.hash)
+    return url.toString()
+  }
+
   if (!r.isEmpty(url.search)) {
     url.search = cleanQueryString(url.search)
     return url.toString()
