@@ -2,3 +2,5 @@
 yarn-error.log
 
 /dist/background.js
+
+/.idea/
