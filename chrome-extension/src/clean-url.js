@@ -23,6 +23,11 @@ const cleanQueryString = r.pipe(
   r.replace(/%20/g, '+')
 )
 
+const cleanGmailHash = r.pipe(
+  r.replace('#search/search+query', '#all'),
+  r.replace('#inbox', '#all')
+)
+
 export default (dirtyUrlString) => {
   const url = new URL(dirtyUrlString)
   if (url.hostname.indexOf('amazon') > -1) {
@@ -32,7 +37,7 @@ export default (dirtyUrlString) => {
   }
 
   if (url.hostname.indexOf('mail.google.com') > -1) {
-    url.hash = r.replace('#search/search+query', '#all')(url.hash)
+    url.hash = cleanGmailHash(url.hash)
     return url.toString()
   }
 

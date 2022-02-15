@@ -53,5 +53,11 @@ describe('URL cleaner', () => {
         'https://mail.google.com/mail/u/0/#all/FMxyz'
       )
     })
+    it('replaces inbox ref', () => {
+      assertClean(
+        'https://mail.google.com/mail/u/0/#inbox/FMxyz',
+        'https://mail.google.com/mail/u/0/#all/FMxyz'
+      )
+    })
   })
 })
