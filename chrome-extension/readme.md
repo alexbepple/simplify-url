@@ -6,6 +6,4 @@
 
 ## Dev
 
-`make dev`
-
 `yarn done` when done.
