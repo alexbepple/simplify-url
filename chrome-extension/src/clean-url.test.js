@@ -1,5 +1,6 @@
 import { assertThat, is } from 'hamjest'
 import * as r from 'ramda'
+import randomstring from 'randomstring'
 import cleanUrl from './clean-url'
 
 const assertClean = r.useWith(assertThat, [cleanUrl, is])
@@ -49,7 +50,7 @@ describe('URL cleaner', () => {
   describe('Gmail', () => {
     it('replaces search string', () => {
       assertClean(
-        'https://mail.google.com/mail/u/0/#search/search+query/FMxyz',
+        `https://mail.google.com/mail/u/0/#search/search+query+${randomstring.generate()}/FMxyz`,
         'https://mail.google.com/mail/u/0/#all/FMxyz'
       )
     })

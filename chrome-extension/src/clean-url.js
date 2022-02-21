@@ -24,7 +24,7 @@ const cleanQueryString = r.pipe(
 )
 
 const cleanGmailHash = r.pipe(
-  r.replace('#search/search+query', '#all'),
+  r.replace(/#search\/[^/]+/, '#all'),
   r.replace('#inbox', '#all')
 )
 
