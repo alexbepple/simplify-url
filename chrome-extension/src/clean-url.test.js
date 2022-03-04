@@ -1,7 +1,7 @@
 import * as __ from 'hamjest'
 import * as r from 'ramda'
 import randomstring from 'randomstring'
-import cleanUrl from './clean-url'
+import cleanUrl from './clean-url.js'
 
 const assertClean = r.useWith(__.assertThat, [cleanUrl, __.is])
 const assertUnchanged = r.converge(assertClean, [r.identity, r.identity])
@@ -11,8 +11,8 @@ it('Leave URL in peace when there is nothing to clean up', () => {
     cleanUrl('http://alex.bepple.de'),
     __.anyOf(
       __.is('http://alex.bepple.de'),
-      __.is('http://alex.bepple.de/') // Allow for pragmatically equal representation
-    )
+      __.is('http://alex.bepple.de/'), // Allow for pragmatically equal representation
+    ),
   )
 })
 
@@ -34,26 +34,26 @@ describe('Strip Amazon product URLs to the bones', () => {
     // I know no example with multiple suffix segments
     assertClean(
       'https://www.amazon.de/dp/after-dp/foo',
-      'https://www.amazon.de/dp/after-dp'
+      'https://www.amazon.de/dp/after-dp',
     )
   })
   it("drop another segment before 'dp'", () => {
     // I know no example with multiple prefix segments
     assertClean(
       'http://amazon.de/foo/dp/after-dp',
-      'http://amazon.de/dp/after-dp'
+      'http://amazon.de/dp/after-dp',
     )
   })
   it('drop query string', () => {
     assertClean(
       'http://amazon.de/dp/after-dp?foo=bar',
-      'http://amazon.de/dp/after-dp'
+      'http://amazon.de/dp/after-dp',
     )
   })
   it('replace old gp url with newer dp url', () => {
     assertClean(
       'https://www.amazon.de/gp/product/asin',
-      'https://www.amazon.de/dp/asin'
+      'https://www.amazon.de/dp/asin',
     )
   })
 })
@@ -62,13 +62,13 @@ describe('Make Gmail URLs stable in time', () => {
   it('replace search interaction', () => {
     assertClean(
       `https://mail.google.com/mail/u/0/#search/search+query+${randomstring.generate()}/FMxyz`,
-      'https://mail.google.com/mail/u/0/#all/FMxyz'
+      'https://mail.google.com/mail/u/0/#all/FMxyz',
     )
   })
   it('replace inbox ref', () => {
     assertClean(
       'https://mail.google.com/mail/u/0/#inbox/FMxyz',
-      'https://mail.google.com/mail/u/0/#all/FMxyz'
+      'https://mail.google.com/mail/u/0/#all/FMxyz',
     )
   })
 })

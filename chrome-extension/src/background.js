@@ -1,12 +1,12 @@
 /* global document, chrome */
 
-import cleanUrl from './clean-url'
+import cleanUrl from './clean-url.js'
 
 let textToPutOnClipboard
 
-document.addEventListener('copy', (e) => {
-  e.clipboardData.setData('text/plain', textToPutOnClipboard)
-  e.preventDefault()
+document.addEventListener('copy', (event) => {
+  event.clipboardData.setData('text/plain', textToPutOnClipboard)
+  event.preventDefault()
 })
 
 chrome.browserAction.onClicked.addListener((tab) => {

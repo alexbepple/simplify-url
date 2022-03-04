@@ -10,10 +10,10 @@ export const urlT = {
   over: {
     hash: overUrlProp('hash'),
     pathname: overUrlProp('pathname'),
-    search: overUrlProp('search')
+    search: overUrlProp('search'),
   },
   clear: {
     hash: clearUrlProp('hash'),
-    search: clearUrlProp('search')
-  }
+    search: clearUrlProp('search'),
+  },
 }
