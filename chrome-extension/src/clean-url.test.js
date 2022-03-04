@@ -1,13 +1,19 @@
-import { assertThat, is } from 'hamjest'
+import * as __ from 'hamjest'
 import * as r from 'ramda'
 import randomstring from 'randomstring'
 import cleanUrl from './clean-url'
 
-const assertClean = r.useWith(assertThat, [cleanUrl, is])
+const assertClean = r.useWith(__.assertThat, [cleanUrl, __.is])
 const assertUnchanged = r.converge(assertClean, [r.identity, r.identity])
 
 it('Leave URL in peace when there is nothing to clean up', () => {
-  assertUnchanged('http://alex.bepple.de')
+  __.assertThat(
+    cleanUrl('http://alex.bepple.de'),
+    __.anyOf(
+      __.is('http://alex.bepple.de'),
+      __.is('http://alex.bepple.de/') // Allow for pragmatically equal representation
+    )
+  )
 })
 
 describe('Remove common tracking search params', () => {

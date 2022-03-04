@@ -28,29 +28,38 @@ const cleanGmailHash = r.pipe(
   r.replace('#inbox', '#all')
 )
 
-export default (dirtyUrlString) => {
-  const url = new URL(dirtyUrlString)
-  if (url.hostname.indexOf('amazon') > -1) {
-    url.pathname = cleanAmazonPathname(url.pathname)
-    url.search = ''
-    return url.toString()
-  }
+const cleanDirtyUrlObject = r.cond([
+  [
+    (url) => url.hostname.indexOf('amazon') > -1,
+    r.tap((url) => {
+      url.pathname = cleanAmazonPathname(url.pathname)
+      url.search = ''
+    })
+  ],
+  [
+    (url) => url.hostname.indexOf('mail.google.com') > -1,
+    r.tap((url) => {
+      url.hash = cleanGmailHash(url.hash)
+    })
+  ],
+  [
+    (url) => r.contains('#:~:text')(url.hash),
+    r.tap((url) => {
+      // This is a very dumb approach. But I have no need to refine it right now.
+      url.hash = ''
+    })
+  ],
+  [
+    (url) => !r.isEmpty(url.search),
+    r.tap((url) => {
+      url.search = cleanQueryString(url.search)
+    })
+  ],
+  [r.T, r.identity]
+])
 
-  if (url.hostname.indexOf('mail.google.com') > -1) {
-    url.hash = cleanGmailHash(url.hash)
-    return url.toString()
-  }
-
-  if (r.contains('#:~:text')(url.hash)) {
-    // This is a very dumb approach. But I have no need to refine it right now.
-    url.hash = ''
-    return url.toString()
-  }
-
-  if (!r.isEmpty(url.search)) {
-    url.search = cleanQueryString(url.search)
-    return url.toString()
-  }
-
-  return dirtyUrlString
-}
+export default r.pipe(
+  (dirtyUrlString) => new URL(dirtyUrlString),
+  cleanDirtyUrlObject,
+  r.toString
+)
