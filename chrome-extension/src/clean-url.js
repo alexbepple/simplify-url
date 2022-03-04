@@ -1,5 +1,6 @@
 import * as r from 'ramda'
 import * as qs from 'query-string'
+import { urlT } from './url-type'
 
 const toPathComponents = r.split('/')
 const toPathname = r.pipe(
@@ -30,31 +31,18 @@ const cleanGmailHash = r.pipe(
 
 const cleanDirtyUrlObject = r.cond([
   [
-    (url) => url.hostname.indexOf('amazon') > -1,
-    r.tap((url) => {
-      url.pathname = cleanAmazonPathname(url.pathname)
-      url.search = ''
-    })
+    (url) => url.hostname.includes('amazon'),
+    r.pipe(
+      urlT.over.pathname(cleanAmazonPathname),
+      urlT.clear.search
+    )
   ],
   [
-    (url) => url.hostname.indexOf('mail.google.com') > -1,
-    r.tap((url) => {
-      url.hash = cleanGmailHash(url.hash)
-    })
+    (url) => url.hostname.includes('mail.google.com'),
+    urlT.over.hash(cleanGmailHash)
   ],
-  [
-    (url) => r.contains('#:~:text')(url.hash),
-    r.tap((url) => {
-      // This is a very dumb approach. But I have no need to refine it right now.
-      url.hash = ''
-    })
-  ],
-  [
-    (url) => !r.isEmpty(url.search),
-    r.tap((url) => {
-      url.search = cleanQueryString(url.search)
-    })
-  ],
+  [(url) => r.contains('#:~:text')(url.hash), urlT.clear.hash],
+  [(url) => !r.isEmpty(url.search), urlT.over.search(cleanQueryString)],
   [r.T, r.identity]
 ])
 
