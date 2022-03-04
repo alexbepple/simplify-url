@@ -1,6 +1,6 @@
 {
   "name": "Simplify URL",
-  "version": "0.2",
+  "version": "0.3",
   "permissions": ["activeTab", "clipboardWrite"],
   "background": {
     "scripts": ["background.js"],

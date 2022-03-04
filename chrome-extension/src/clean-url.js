@@ -41,6 +41,12 @@ export default (dirtyUrlString) => {
     return url.toString()
   }
 
+  if (r.contains('#:~:text')(url.hash)) {
+    // This is a very dumb approach. But I have no need to refine it right now.
+    url.hash = ''
+    return url.toString()
+  }
+
   if (!r.isEmpty(url.search)) {
     url.search = cleanQueryString(url.search)
     return url.toString()

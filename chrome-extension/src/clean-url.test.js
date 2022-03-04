@@ -62,3 +62,10 @@ describe('URL cleaner', () => {
     })
   })
 })
+
+describe('Text fragments', () => {
+  // cp. https://wicg.github.io/scroll-to-text-fragment/#syntax
+  it('are removed', () => {
+    assertClean('http://host.tld/#:~:text=textStart', 'http://host.tld/')
+  })
+})
